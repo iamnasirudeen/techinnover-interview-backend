@@ -3,17 +3,18 @@ const Family = require("../models/family");
 const responseHandler = require("../utils");
 exports.createUser = async function (req, res, next) {
   try {
-    req.body.photograph = req.file.filename;
-
+    //req.body.photograph = req.file.filename;
     let user = await User.create(req.body);
 
     // Create a family only if a family array is not empty
-    if (req.body.family !== "") {
+    if (req.body.family !== undefined && req.body.family !== "") {
+      let familyData = (data) => Object.assign.call(data, { owner: user._id });
       req.body.family.map(
-        async (data) =>
-          await Family.create(Object.assign(data, { owner: user._id }))
+        async (data) => await Family.create(familyData(data))
       );
     }
+
+    // send the user data and the family members data back to the user
     let payload = await User.aggregate([
       {
         $match: {
@@ -37,7 +38,14 @@ exports.createUser = async function (req, res, next) {
       ...payload
     );
   } catch (error) {
-    next(error);
+    console.log(error.message);
+    return responseHandler(
+      res,
+      500,
+      "Error",
+      "An error occured",
+      error.message
+    );
   }
 };
 
