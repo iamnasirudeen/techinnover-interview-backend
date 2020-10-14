@@ -1,4 +1,4 @@
-# HABIT APP BACKEND :rocket:
+# techinnover-interview-backend :rocket:
 
 Just Git clone, yarn install, yarn start
 
