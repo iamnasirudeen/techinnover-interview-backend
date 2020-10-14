@@ -44,8 +44,7 @@ This folder is responsible for all custom made library e.g (file uploader).
 
 ## Endpoints
 
-    note: make sure to pass token to header
-
+```
     Create User:
         endpoint: (/user/create)
         method: post
@@ -66,3 +65,4 @@ This folder is responsible for all custom made library e.g (file uploader).
         method: get
         parameters:
             email (required, string)
+```
