@@ -36,6 +36,11 @@ exports.createUser = async function (req, res, next) {
           as: "family_members",
         },
       },
+      {
+        $sort: {
+          createdAt: -1
+        }
+      }
     ]);
     return responseHandler(
       res,
@@ -91,6 +96,11 @@ exports.getUserDataByEmail = async function (req, res, next) {
         as: "family_members",
       },
     },
+    {
+      $sort: {
+        createdAt: -1
+      }
+    }
   ]);
   return responseHandler(
     res,
