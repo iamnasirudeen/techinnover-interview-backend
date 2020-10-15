@@ -8,6 +8,8 @@ exports.createUser = async function (req, res, next) {
     req.body.photograph = req.file.filename;
     let user = await User.create(req.body);
 
+    console.log(user)
+
     // Create a family only if a family array is not empty
     if (req.body.family !== undefined && req.body.family !== "") {
       req.body.family.map(
