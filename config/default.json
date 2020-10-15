@@ -1,5 +1,5 @@
 {
     "port": 5000,
     "env": "dev",
-    "mongodb_url": "mongodb://localhost/techinnover"
+    "mongodb_url": "mongodb://admin:admin12345@ds153729.mlab.com:53729/techinnover"
 }
