@@ -18,7 +18,7 @@ function fileFilter(req, file, cb) {
   }
 
   if (file.mimetype.startsWith("image")) {
-    if (file.size > fileLimit) cb(new Error("File is too large", 400), false);
+    if (file.size > fileLimit) cb(new Error("File is too large. File size should not be more than 1mb", 400), false);
     else cb(null, true);
   } else {
     cb(new Error("File is not an image!", 400), false);
