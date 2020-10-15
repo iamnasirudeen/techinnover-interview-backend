@@ -3,14 +3,21 @@ const Family = require("../models/family");
 const responseHandler = require("../utils");
 exports.createUser = async function (req, res, next) {
   try {
+    // parse family object cos it is coming as a string from the client
+    req.body.family = JSON.parse(req.body.family);
     req.body.photograph = req.file.filename;
     let user = await User.create(req.body);
 
     // Create a family only if a family array is not empty
     if (req.body.family !== undefined && req.body.family !== "") {
-      let familyData = (data) => Object.assign.call(data, { owner: user._id });
       req.body.family.map(
-        async (data) => await Family.create(familyData(data))
+        async (data) =>
+          await Family.create({
+            name: data.name,
+            relationship: data.relationship,
+            age: data.age,
+            owner: user._id,
+          })
       );
     }
 
