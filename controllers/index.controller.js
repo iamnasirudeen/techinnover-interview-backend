@@ -3,7 +3,7 @@ const Family = require("../models/family");
 const responseHandler = require("../utils");
 exports.createUser = async function (req, res, next) {
   try {
-    //req.body.photograph = req.file.filename;
+    req.body.photograph = req.file.filename;
     let user = await User.create(req.body);
 
     // Create a family only if a family array is not empty
