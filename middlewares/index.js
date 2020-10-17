@@ -9,7 +9,7 @@ const cors = require("cors");
 const middlewares = [
   cors(),
   logger(config.get("env")),
-  express.json({ limit: "10mb" }),
+  express.json({ limit: "500mb" }),
   express.urlencoded({ extended: false }),
   express.static(path.join(__dirname, "..", "public")),
 ];
